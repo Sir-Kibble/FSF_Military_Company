@@ -9,7 +9,7 @@
 	
 
 	#"weaponGlowColor":[255,0,255,255],
-  #"weaponTypes":[ENERGY, BALLISTIC, MISSILE],
+  	#"weaponTypes":[ENERGY, BALLISTIC, MISSILE],
 	"weaponTypes":[ENERGY, BALLISTIC],
 	
 	"runScriptWhileIdle":true,  # this means unapply() never gets called	

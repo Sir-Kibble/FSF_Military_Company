@@ -323,45 +323,50 @@ class aEP_WeaponReset: BaseShipSystemScript() {
     return true
   }
 
-  fun spawnSmoke(ship: ShipAPI, minSmokeDist: Int) {
+fun spawnSmoke(ship: ShipAPI, minSmokeDist: Int) {
     var moveAngle = 0f
-    val angleToTurn = getTargetWidthAngleInDistance(ship.location, getExtendedLocationFromPoint(ship.location, 0f, ship.collisionRadius), minSmokeDist.toFloat())
-    while (moveAngle < 360f) {
-      val outPoint = CollisionUtils.getCollisionPoint(getExtendedLocationFromPoint(ship.location, moveAngle, ship.collisionRadius + 10), ship.location, ship)
-      val lifeTime = 2f
-      val extendRange = 0.5f
-      val speed = speed2Velocity(VectorUtils.getAngle(ship.location, outPoint), extendRange * ship.collisionRadius)
-      val ms = aEP_MovingSmoke(outPoint!!)
-      ms.lifeTime = lifeTime
-      ms.fadeIn = 0.25f
-      ms.fadeOut = 0.5f
-      ms.setInitVel(speed)
-      ms.size = minSmokeDist * 3f
-      ms.sizeChangeSpeed = minSmokeDist * extendRange * 3f / lifeTime
-      ms.color = SMOKE_COLOR
-      ms.stopSpeed = 0.75f
-      addEffect(ms)
-      moveAngle += angleToTurn
+    var angleToTurn = getTargetWidthAngleInDistance(ship.location, getExtendedLocationFromPoint(ship.location, 0f, ship.collisionRadius), minSmokeDist.toFloat())
+    if(angleToTurn == null) {
+		angleToTurn = 1f
+	}
+    val outPoint = CollisionUtils.getCollisionPoint(getExtendedLocationFromPoint(ship.location, moveAngle, ship.collisionRadius + 10), ship.location, ship)
+    if (outPoint == null) {
+    		return;
     }
+    while (moveAngle < 360f) {
+		val lifeTime = 2f
+		val extendRange = 0.5f
+		val speed = speed2Velocity(VectorUtils.getAngle(ship.location, outPoint), extendRange * ship.collisionRadius)
+		val ms = aEP_MovingSmoke(outPoint!!)
+		ms.lifeTime = lifeTime
+		ms.fadeIn = 0.25f
+		ms.fadeOut = 0.5f
+		ms.setInitVel(speed)
+		ms.size = minSmokeDist * 3f
+		ms.sizeChangeSpeed = minSmokeDist * extendRange * 3f / lifeTime
+		ms.color = SMOKE_COLOR
+		ms.stopSpeed = 0.75f
+		addEffect(ms)
+		moveAngle += angleToTurn
+	}	
     moveAngle = 0f
     while (moveAngle < 360f) {
-      val outPoint = CollisionUtils.getCollisionPoint(getExtendedLocationFromPoint(ship.location, moveAngle, ship.collisionRadius + 10), ship.location, ship)
-      val lifeTime = 2f
-      val extendRange = 0.5f
-      val speed = speed2Velocity(VectorUtils.getAngle(ship.location, outPoint), extendRange * ship.collisionRadius + minSmokeDist * 6f)
-      val ms = aEP_MovingSmoke(outPoint!!)
-      ms.lifeTime = lifeTime
-      ms.fadeIn = 0.25f
-      ms.fadeOut = 0.5f
-      ms.setInitVel(speed)
-      ms.size = minSmokeDist * 6f
-      ms.sizeChangeSpeed = minSmokeDist * extendRange * 6f / lifeTime
-      ms.color = SMOKE_COLOR
-      ms.stopSpeed = 0.75f
-      addEffect(ms)
-      moveAngle += angleToTurn
-    }
-  }
+      	val lifeTime = 2f
+		val extendRange = 0.5f
+		val speed = speed2Velocity(VectorUtils.getAngle(ship.location, outPoint), extendRange * ship.collisionRadius + minSmokeDist * 6f)
+		val ms = aEP_MovingSmoke(outPoint!!)
+		ms.lifeTime = lifeTime
+		ms.fadeIn = 0.25f
+		ms.fadeOut = 0.5f
+		ms.setInitVel(speed)
+		ms.size = minSmokeDist * 6f
+		ms.sizeChangeSpeed = minSmokeDist * extendRange * 6f / lifeTime
+		ms.color = SMOKE_COLOR
+		ms.stopSpeed = 0.75f
+		addEffect(ms)
+		moveAngle += angleToTurn
+	}
+}
 
   fun updateDecos(ship: ShipAPI, effectLevel: Float, amount: Float){
     var slide_l : aEP_DecoAnimation? = null

@@ -4044,6 +4044,7 @@ class SplitTrigger : aEP_BaseCombatEffect{
         ShipAPI.HullSize.CRUISER ->{weight = 0.1f}
         ShipAPI.HullSize.DESTROYER ->{weight = 1f}
         ShipAPI.HullSize.FRIGATE ->{weight = 2f}
+          else -> {}
       }
       picker.add(s, weight)
     }

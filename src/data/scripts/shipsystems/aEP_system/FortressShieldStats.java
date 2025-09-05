@@ -4,7 +4,7 @@ import com.fs.starfarer.api.combat.MutableShipStatsAPI;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.WeaponAPI;
 import com.fs.starfarer.api.impl.combat.BaseShipSystemScript;
-import com.fs.starfarer.ui.W;
+import com.fs.starfarer.ui.w;
 import data.scripts.weapons.aEP_DecoAnimation;
 import org.lazywizard.lazylib.MathUtils;
 

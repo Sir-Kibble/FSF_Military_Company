@@ -2249,6 +2249,7 @@ class aEP_Tool {
         DamageType.ENERGY -> realDamage *= EnFactor
         DamageType.FRAGMENTATION -> realDamage *= FragFactor
 
+          else -> {}
       }
       return realDamage
     }
